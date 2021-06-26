@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8">
+    <title>My weather app</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/weather_app.css') }}">
+    <style>
+    .columns{
+            height: 100px;
+            margin-left: 520px;
+            }
+            .subtitle{
+              font-size: 20px;
+              padding-top: 60px;
+            }
+            .title{
+              font-size: 30px;
+              float: left;
+              padding-top: 10px;
+              color: #444958;
+              text-transform: uppercase;
+            }
+    </style>
+</head>
+<body>
+<div  class="exampleone">
+    <section class="hero is-primary">
+        <div class="hero-body">
+            <div class="container">
+                <div class="segment">
+                    <h1>Enter city name</h1>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <form method="POST">
+            <div class="field">
+                <div class="control">
+                    <input class="input" name="city" type="text" placeholder="Type here">
+                </div>
+                <div class="control1">
+                    <button class="button is-info">
+                        <span class="material-icons">search</span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </section>
+
+
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-offset-4 is-4">
+                    {% for weather in weather_data %}
+                    <div class="box">
+                        <article class="media">
+                            <div class="media-left">
+                                <figure class="image" style="height: 100px;width: 100px;float: left;padding-top: 0px;">
+                                    <img src="http://openweathermap.org/img/w/{{ weather.icon }}.png" alt="Image">
+                                </figure>
+                            </div>
+                            <div class="media-content">
+                                <div class="content">
+                                    <p>
+                                        <div class="title" style="color: #444958; text-transform: uppercase; font-weight: bold;">{{ weather.city }}</div>
+                                        <div class="subtitle" style="color: #444958;"> {{ weather.temperature }}° F</div>
+                                         {{ weather.description }}
+                                    </p>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+</body>
+</html>
